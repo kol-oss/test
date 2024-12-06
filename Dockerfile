@@ -2,11 +2,13 @@ FROM gradle:jdk17 AS build
 ENV APP_HOME=/app/
 
 WORKDIR $APP_HOME
-COPY ./build.gradle.kts ./settings.gradle.kts $APP_HOME
+COPY build.gradle.kts ./settings.gradle.kts $APP_HOME
 
 COPY gradle $APP_HOME/gradle
 COPY --chown=gradle:gradle . /home/gradle/src
 USER root
+
+COPY . .
 
 RUN chown -R gradle /home/gradle/src
 
