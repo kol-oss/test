@@ -10,9 +10,6 @@ USER root
 
 RUN chown -R gradle /home/gradle/src
 
-RUN gradle build || return 0
-COPY . .
-
 RUN gradle clean build
 
 FROM openjdk:17 AS app
